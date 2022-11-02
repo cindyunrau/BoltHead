@@ -136,6 +136,12 @@ To use textures in WebGL we have to bypass a security issue that is present in m
 :blue_heart: 
 :purple_heart:
 
+<!-- RESOURCES -->
+## Ideass
+
+* Magnet Object
+* Manual Camera Movement
+
 <!-- BADGES -->
 [milestones-shield]: https://img.shields.io/github/milestones/all/cindyunrau/BoltHead?color=%23ff69b4&style=for-the-badge
 [milestones-url]: https://google.ca
