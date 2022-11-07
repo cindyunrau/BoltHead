@@ -8,7 +8,7 @@ var far = 100;
 
 var left = -6.0;
 var right = 6.0;
-var ytop =6.0;
+var ytop = 6.0;
 var bottom = -6.0;
 
 var lightPosition = vec4(0.0, 0.0, 100.0, 1.0 );
@@ -25,6 +25,7 @@ var ambientColor, diffuseColor, specularColor;
 
 var modelMatrix, viewMatrix, modelViewMatrix, projectionMatrix, normalMatrix;
 var modelViewMatrixLoc, projectionMatrixLoc, normalMatrixLoc;
+
 var eye;
 var at = vec3(0.0, 0.0, 0.0);
 var up = vec3(0.0, 1.0, 0.0);
@@ -88,13 +89,16 @@ window.onload = function init() {
         }
     };
 
-    var controller = new CameraController(canvas);
+    controller = new CameraController(canvas);
     controller.onchange = function(xRot,yRot) {
         RX = xRot ;
         RY = yRot ;
-        window.requestAnimFrame(render); };
+        console.log(controller.curX);
+        window.requestAnimFrame(render); 
+    };
 
     initTextures();
+    waitForTextures();
 }
 
 function setMV() {
@@ -113,13 +117,13 @@ function setAllMatrices() {
 function render(timestamp) {
     gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
     
-    eye = vec3(0,0,10);
+    eye = vec3(0,0,15);
     MS = []; 
 
     modelMatrix = mat4();
     viewMatrix = lookAt(eye, at, up);
     projectionMatrix = ortho(left, right, bottom, ytop, near, far);
-
+    
     setAllMatrices();
     
 	if( animFlag )
@@ -127,21 +131,9 @@ function render(timestamp) {
 		dt = (timestamp - prevTime) / 1000.0;
 		prevTime = timestamp;
 	}
-	
+
     drawScene();
     
     if( animFlag )
         window.requestAnimFrame(render);
-}
-
-function CameraController(element) {
-	var controller = this;
-	this.onchange = null;
-	this.xRot = 0;
-	this.yRot = 0;
-	this.scaleFactor = 3.0;
-	this.dragging = false;
-	this.curX = 0;
-	this.curY = 0;
-
 }
