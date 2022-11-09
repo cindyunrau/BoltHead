@@ -53,6 +53,7 @@ function drawCone() {
 
 // Transformation Functions 
 function gTranslate(x,y,z) {
+    console.log(modelMatrix);
     modelMatrix = mult(modelMatrix,translate([x,y,z]));
 }
 
