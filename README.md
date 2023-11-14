@@ -36,7 +36,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 <p align="center">
-    <img src="Images/Screenshot.jpg" alt="Screenshot">
+    <img src="Images/screenshot.jpg" alt="Screenshot">
   </a>
 </p>
 
