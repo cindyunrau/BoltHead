@@ -2,23 +2,21 @@
 
 <!-- HEADER -->
 <div align="center">
-  
   <img src="images/logo.svg" alt="Logo" width=80px>
   
-  # BoltHead
+  # Bolt Head
 
   [![Milestones][milestones-shield]][milestones-url]
   [![LastCommit][last-commit-shield]][last-commit-url]
   [![Stars][stars-shield]][stars-url]
   [![LinkedIn][linkedin-shield]][linkedin-url]
   
-  A 3D WebGL Animation scene containing a fun lil robot. 
+  A 3D WebGL Animation scene containing a chaotic robot 
   <br />
-  [**Explore the docs »**](https://github.com/cindyunrau/BoltHead)
 
-  [View Demo](https://github.com/cindyunrau/BoltHead) •
-  [Report Bug](https://github.com/cindyunrau/BoltHead) •
-  [Request Feature](https://github.com/cindyunrau/BoltHead) 
+  [View Demo](https://github.com/cindyunrau/bolt-head) •
+  [Report Bug](https://github.com/cindyunrau/bolt-head/issues) •
+  [Request Feature](https://github.com/cindyunrau/bolt-head/issues) 
 
 </div>
 <br />
@@ -37,9 +35,12 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-![Featured Image][featured-image]
+<p align="center">
+    <img src="Images/Screenshot.jpg" alt="Screenshot">
+  </a>
+</p>
 
-Program in JavaScript/WebGL that draws an animated scene of the friendly robot BoltHead! Uses hierarchical transformations, the camera, textures, and shaders.
+Program in JavaScript/WebGL that draws an animated scene of the friendly robot bolt-head! Uses hierarchical transformations, the camera, textures, and shaders.
 
 ### Built With
 * [![WebGL][webGL-shield]][webGL-url]
@@ -51,8 +52,6 @@ Program in JavaScript/WebGL that draws an animated scene of the friendly robot B
 
 <!-- GETTING STARTED -->
 ## Getting Started
-
-Do a few push-ups, then continue.
 
 ### Prerequisites
 
@@ -82,53 +81,8 @@ To use textures in WebGL we have to bypass a security issue that is present in m
   ```chrome --allow-file-access-from-files```
 
 <p align="right">
-  <a href="#top">help i'm lost!</a>
-</p>
-
-<!-- USAGE EXAMPLES -->
-## Deliverables
-
-- [ ] Project Folder
-- [ ] Movie File
-- [ ] Image File
-
-<p align="right">
-  <a href="#top">up up and away!</a>
-</p>
-
-<!-- TO-DO -->
-## To-do
-
-| Done? | Description | Marks |
-| :--- | :--- | :--- |
-| | At least one two-level hierarchical object | **[4]** |
-| | Make use of at least two textures either procedural or mapped. You must map them to a(n) object(s) in a meaningful way. | **[6]** |
-| | Convert the Phong to Blinn-Phong in the new assignment base code fragment shader created in the previous step. | **[5]** |
-| | Convert the ADS shader in the assignment base code from a vertex shader to a fragment shader. | **[2]** |
-| | At least one shader edited or designed from scratch to perform a clearly visible effect. Each line of your shader code must be commented clearly explaining exactly what the following line does and why. You must clearly identify the purpose and effect the shader produces in the submitted README. | **[5]** |
-| | 360 degrees camera fly around using lookAt() and setMV(). | **[4]** |
-| | Connection to real-time. You should make sure that your scene runs in real-time on fast enough machines. Real-time means that one simulated second corresponds roughly to one real second. | **[4]** |
-| | You should display the frame rate of your program in the console window or the graphics window once every 2 seconds. | **[2]** |
-| | Complexity: scene setup and design, movement of animated elements, and programming. | **[5]** |
-| | Creativity: storytelling, scene design, object appearance and other artistic elements.  | **[5]** |
-| | Quality:  Attention to detail, modelling quality, rendering quality, motion control.  | **[5]** |
-| | Programming style. | **[2]** |
-| | Make and submit a movie of your animation. The movie should be at least 512x512 resolution and in a standard format, such as mp4. Include a cover image (png or jpg) of at least 512x512 pixels. | **[-2]** |
-| | Provide a readme.txt that describes what you have done, what you have omitted, and any other information that will help the grader evaluate your work, including what is stated below.  | **[-4]** |
-
-<p align="right">
   <a href="#top">beam me up!</a>
 </p>
-
-<!-- RESOURCES -->
-## Resources
-
-### Public Use Images
-
-* [Wiki Commons](https://commons.wikimedia.org/wiki/Main_Page)
-* [PARIS MUSÉES](https://www.parismuseescollections.paris.fr/en)
-* [Smithsonian Open Access](https://www.si.edu/OpenAccess)
-
 
 :heart:
 :yellow_heart:
@@ -136,19 +90,14 @@ To use textures in WebGL we have to bypass a security issue that is present in m
 :blue_heart: 
 :purple_heart:
 
-<!-- RESOURCES -->
-## Ideass
-
-* Magnet Object
-* Manual Camera Movement
 
 <!-- BADGES -->
-[milestones-shield]: https://img.shields.io/github/milestones/all/cindyunrau/BoltHead?color=%23ff69b4&style=for-the-badge
+[milestones-shield]: https://img.shields.io/github/milestones/all/cindyunrau/bolt-head?color=%23ff69b4&style=for-the-badge
 [milestones-url]: https://google.ca
-[last-commit-shield]: https://img.shields.io/github/last-commit/cindyunrau/BoltHead/main?color=%2300ffff&style=for-the-badge
-[last-commit-url]: https://github.com/cindyunrau/BoltHead/commits/main
-[stars-shield]: https://img.shields.io/github/stars/cindyunrau/BoltHead.svg?color=%23fff740&style=for-the-badge
-[stars-url]: https://github.com/cindyunrau/BoltHead
+[last-commit-shield]: https://img.shields.io/github/last-commit/cindyunrau/bolt-head/main?color=%2300ffff&style=for-the-badge
+[last-commit-url]: https://github.com/cindyunrau/bolt-head/commits/main
+[stars-shield]: https://img.shields.io/github/stars/cindyunrau/bolt-head.svg?color=%23fff740&style=for-the-badge
+[stars-url]: https://github.com/cindyunrau/bolt-head
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/cindyunrau
 [webGL-shield]: https://img.shields.io/badge/WebGL-990000?logo=webgl&logoColor=white&style=for-the-badge
