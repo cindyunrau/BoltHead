@@ -41,7 +41,9 @@ var dt = 0.0
 var prevTime = 0.0;
 var resetTimerFlag = true;
 var animFlag = false;
-var controller;
+
+var fps = 0;
+var secondTracker = 0;
 
 window.onload = function init() {
     canvas = document.getElementById( "gl-canvas" );
@@ -50,7 +52,7 @@ window.onload = function init() {
     if ( !gl ) { alert( "WebGL isn't available" ); }
 
     gl.viewport( 0, 0, canvas.width, canvas.height );
-    gl.clearColor( 0.5, 1.0, 1.0, 1.0);
+    gl.clearColor(0.137,0.137,0.137,1.0);
     
     gl.enable(gl.DEPTH_TEST);
 
@@ -60,9 +62,12 @@ window.onload = function init() {
     setColor(materialDiffuse);
 
     Cube.init(program);
-    Cylinder.init(20,program);
+    OneSidedCube.init(program);
+    Cylinder.init(5,program);
     Cone.init(20,program);
     Sphere.init(36,program);
+    Prism.init(6,program);
+    Donut.init(36,program);
 
     modelViewMatrixLoc = gl.getUniformLocation( program, "modelViewMatrix" );
     normalMatrixLoc = gl.getUniformLocation( program, "normalMatrix" );
@@ -79,6 +84,7 @@ window.onload = function init() {
     gl.uniform1f( gl.getUniformLocation(program, 
        "shininess"),materialShininess );
 
+
     document.getElementById("animToggleButton").onclick = function() {
         if( animFlag ) {
             animFlag = false;
@@ -90,35 +96,15 @@ window.onload = function init() {
         }
     };
 
-    controller = new CameraController(canvas);
-    controller.onchange = function(xRot,yRot) {
-        RX = xRot ;
-        RY = yRot ;
-        console.log(controller.curX);
-        window.requestAnimFrame(render); 
-    };
-
     initTextures();
     waitForTextures();
-}
-
-function setMV() {
-    modelViewMatrix = mult(viewMatrix,modelMatrix);
-    gl.uniformMatrix4fv(modelViewMatrixLoc, false, flatten(modelViewMatrix) );
-    normalMatrix = inverseTranspose(modelViewMatrix);
-    gl.uniformMatrix4fv(normalMatrixLoc, false, flatten(normalMatrix) );
-}
-
-function setAllMatrices() {
-    gl.uniformMatrix4fv(projectionMatrixLoc, false, flatten(projectionMatrix) );
-    setMV();   
 }
 
 // Render 
 function render(timestamp) {
     gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
     
-    eye = vec3(0,0,15);
+    eye = vec3(0,0,10);
     MS = []; 
 
     modelMatrix = mat4();
@@ -131,9 +117,19 @@ function render(timestamp) {
     {
 		dt = (timestamp - prevTime) / 1000.0;
 		prevTime = timestamp;
+        secondTracker += dt;
 	}
+    getTimestamp(timestamp);
 
     drawScene();
+
+    // Fps
+    if(2-secondTracker<=0 || timestamp == 0){
+        fps = getFps();
+        secondTracker = 0;
+    }
+
+    document.getElementById("fps").innerHTML = fps;    
     
     if( animFlag )
         window.requestAnimFrame(render);

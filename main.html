@@ -4,25 +4,27 @@
         in vec4 vPosition;
         in vec3 vNormal;
         in vec4 vColor;
+        in vec2 vTexCoord;
 
         uniform mat4 modelViewMatrix;
         uniform mat4 normalMatrix;
         uniform mat4 projectionMatrix;
         uniform vec4 lightPosition;
 
-        out vec3 fPos;
-        out vec3 fLpos;
-        out vec3 fN;
+        out vec3 fragPos;
+        out vec3 lightPos;
+        out vec3 normal;
 
-        out vec4 fColor;
         out vec2 fTexCoord;
 
         void
         main()
         {
-            fPos = (modelViewMatrix * vPosition).xyz;
-            fN = normalize((normalMatrix*vec4(vNormal,0.0)).xyz);
-            fLpos = lightPosition.xyz;
+            fragPos = (modelViewMatrix * vPosition).xyz;
+            normal = normalize((normalMatrix*vec4(vNormal,0.0)).xyz);
+            lightPos = lightPosition.xyz;
+
+            fTexCoord = vTexCoord;
 
             gl_Position = projectionMatrix * modelViewMatrix * vPosition;
         }
@@ -35,39 +37,45 @@
         uniform sampler2D texture1;
         uniform int useTextures;
         uniform int blendTextures;
+        uniform float timestamp;
 
         uniform vec4 ambientProduct, diffuseProduct, specularProduct;
         uniform float shininess; 
 
-        in vec3 fPos;
-        in vec3 fLpos;
-        in vec3 fN;
+        in vec3 fragPos;
+        in vec3 lightPos;
+        in vec3 normal;
+
         in vec2 fTexCoord;
+
         layout (location = 0) out vec4 fragColor;
 
         void
         main()
         {
-            vec3 L = normalize(fLpos-fPos);
-            vec3 V = normalize(-fPos) ;
-            vec3 R = reflect(-L, fN) ;
+            vec3 lightDir = normalize(lightPos-fragPos);
+            vec3 viewDir = normalize(-fragPos);
+            vec3 halfDir = normalize(lightDir + viewDir);
 
-            float lightDotNormal = max( dot(L, fN), 0.0 );
+            float lightDotNormal = max( dot(lightDir, normal), 0.0 );
             
             vec4 ambient = ambientProduct;
             vec4 diffuse = vec4(0.0, 0.0, 0.0, 1.0);
             vec4 specular = vec4(0.0, 0.0, 0.0, 1.0);
 
             diffuse = lightDotNormal * diffuseProduct;
-            float reflectedDotViewShiny = pow( max(dot(R, V), 0.0), shininess );
+            float reflectedDotViewShiny = pow( max(dot(normal,halfDir), 0.0), shininess );
             specular = specularProduct * reflectedDotViewShiny;
             
-            if( dot(L, fN) < 0.0 ) {
+            if( dot(lightDir, normal) < 0.0 ) {
                 specular = vec4(0.0, 0.0, 0.0, 1.0);
             }
             
             vec4 color = ambient + diffuse + specular;
             color.a = 1.0;
+
+            // Shader: This line pulses the red
+            vec4 red = vec4(sin(timestamp),0,0,0.9);
 
             if( useTextures == 1 ){
                 if( blendTextures == 1 ){
@@ -76,8 +84,8 @@
                     fragColor = texture( texture0, fTexCoord );
                 }
             } else {
-                fragColor = color;
-                fragColor.a = 1.0;
+                // Shader: This line mixes the degrees of red with the other colors
+                fragColor = mix(color,red,0.4);
             }
 
         }   
@@ -101,10 +109,10 @@
 
         <br></br>
 
+        <div><span id="fps"></span></div>
+
         <div id="animToggleButton">
-            <input id="animToggleButton" type="button" value="Show Me Something Cool!"
-            />
-        
+            <input id="animToggleButton" type="button" value="Activate 360 Mode"/>
         </div>
     </body>
 </html>
